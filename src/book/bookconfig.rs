@@ -24,7 +24,7 @@ impl BookConfig {
             root: root.to_owned(),
             dest: PathBuf::from("book"),
             src: PathBuf::from("src"),
-            indent_spaces: 4,               // indentation used for SUMMARY.md
+            indent_spaces: 4, // indentation used for SUMMARY.md
             multilingual: false,
         }
     }
@@ -38,7 +38,7 @@ impl BookConfig {
             Ok(f) => f,
             Err(_) => {
                 debug!("[*]: Failed to open {:?}", root.join("book.json"));
-                return self
+                return self;
             },
         };
 
@@ -47,7 +47,9 @@ impl BookConfig {
 
         // Just return if an error occured.
         // I would like to propagate the error, but I have to return `&self`
-        if let Err(_) = config_file.read_to_string(&mut data) { return self }
+        if let Err(_) = config_file.read_to_string(&mut data) {
+            return self;
+        }
 
         // Convert to JSON
         if let Ok(config) = Json::from_str(&data) {
@@ -55,8 +57,12 @@ impl BookConfig {
 
             debug!("[*]: Extracting data from config");
             // Title & author
-            if let Some(a) = config.find_path(&["title"]) { self.title = a.to_string().replace("\"", "") }
-            if let Some(a) = config.find_path(&["author"]) { self.author = a.to_string().replace("\"", "") }
+            if let Some(a) = config.find_path(&["title"]) {
+                self.title = a.to_string().replace("\"", "")
+            }
+            if let Some(a) = config.find_path(&["author"]) {
+                self.author = a.to_string().replace("\"", "")
+            }
 
             // Destination
             if let Some(a) = config.find_path(&["dest"]) {
@@ -68,7 +74,9 @@ impl BookConfig {
                         let dest = self.get_root().join(&dest).to_owned();
                         self.set_dest(&dest);
                     },
-                    false => { self.set_dest(&dest); },
+                    false => {
+                        self.set_dest(&dest);
+                    },
                 }
             }
         }
@@ -102,5 +110,4 @@ impl BookConfig {
         self.src = src.to_owned();
         self
     }
-
 }
