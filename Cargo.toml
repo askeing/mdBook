@@ -21,7 +21,7 @@ rustc-serialize = "~0.3.16"
 pulldown-cmark = "~0.0.6"
 
 # Watch feature
-notify = { version = "~2.4.1", optional = true }
+notify = { version = "~2.5.4", optional = true }
 time = { version = "~0.1.33", optional = true }
 crossbeam = { version = "~0.2.8", optional = true }
 
