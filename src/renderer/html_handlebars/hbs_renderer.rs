@@ -108,7 +108,9 @@ impl Renderer for HtmlHandlebars {
 
                         debug!("[*]: Create file {:?}", &book.get_dest().join(&ch.path).with_extension("html"));
                         // Write to file
-                        let mut file = try!(utils::fs::create_file(&book.get_dest().join(&ch.path).with_extension("html")));
+                        let mut file = try!(utils::fs::create_file(&book.get_dest()
+                                                                        .join(&ch.path)
+                                                                        .with_extension("html")));
                         output!("[*] Creating {:?} ✓", &book.get_dest().join(&ch.path).with_extension("html"));
 
                         try!(file.write_all(&rendered.into_bytes()));
@@ -213,54 +215,55 @@ impl Renderer for HtmlHandlebars {
 
         // Font Awesome local fallback
         let mut font_awesome = if let Ok(f) = utils::fs::create_file(&book.get_dest()
-                                                                      .join("_FontAwesome/css/font-awesome.css")) {
+                                                                          .join("_FontAwesome/css/font-awesome.css")) {
             f
         } else {
             return Err(Box::new(io::Error::new(io::ErrorKind::Other, "Could not create font-awesome.css")));
         };
         try!(font_awesome.write_all(theme::FONT_AWESOME));
         let mut font_awesome = if let Ok(f) = utils::fs::create_file(&book.get_dest()
-                                                                      .join("_FontAwesome/fonts/fontawesome-webfon\
-                                                                             t.eot")) {
+                                                                          .join("_FontAwesome/fonts/fontawesome-we\
+                                                                                 bfont.eot")) {
             f
         } else {
             return Err(Box::new(io::Error::new(io::ErrorKind::Other, "Could not create fontawesome-webfont.eot")));
         };
         try!(font_awesome.write_all(theme::FONT_AWESOME_EOT));
         let mut font_awesome = if let Ok(f) = utils::fs::create_file(&book.get_dest()
-                                                                      .join("_FontAwesome/fonts/fontawesome-webfon\
-                                                                             t.svg")) {
+                                                                          .join("_FontAwesome/fonts/fontawesome-we\
+                                                                                 bfont.svg")) {
             f
         } else {
             return Err(Box::new(io::Error::new(io::ErrorKind::Other, "Could not create fontawesome-webfont.svg")));
         };
         try!(font_awesome.write_all(theme::FONT_AWESOME_SVG));
         let mut font_awesome = if let Ok(f) = utils::fs::create_file(&book.get_dest()
-                                                                      .join("_FontAwesome/fonts/fontawesome-webfon\
-                                                                             t.ttf")) {
+                                                                          .join("_FontAwesome/fonts/fontawesome-we\
+                                                                                 bfont.ttf")) {
             f
         } else {
             return Err(Box::new(io::Error::new(io::ErrorKind::Other, "Could not create fontawesome-webfont.ttf")));
         };
         try!(font_awesome.write_all(theme::FONT_AWESOME_TTF));
         let mut font_awesome = if let Ok(f) = utils::fs::create_file(&book.get_dest()
-                                                                      .join("_FontAwesome/fonts/fontawesome-webfon\
-                                                                             t.woff")) {
+                                                                          .join("_FontAwesome/fonts/fontawesome-we\
+                                                                                 bfont.woff")) {
             f
         } else {
             return Err(Box::new(io::Error::new(io::ErrorKind::Other, "Could not create fontawesome-webfont.woff")));
         };
         try!(font_awesome.write_all(theme::FONT_AWESOME_WOFF));
         let mut font_awesome = if let Ok(f) = utils::fs::create_file(&book.get_dest()
-                                                                      .join("_FontAwesome/fonts/fontawesome-webfon\
-                                                                             t.woff2")) {
+                                                                          .join("_FontAwesome/fonts/fontawesome-we\
+                                                                                 bfont.woff2")) {
             f
         } else {
             return Err(Box::new(io::Error::new(io::ErrorKind::Other, "Could not create fontawesome-webfont.woff2")));
         };
         try!(font_awesome.write_all(theme::FONT_AWESOME_WOFF2));
         let mut font_awesome = if let Ok(f) = utils::fs::create_file(&book.get_dest()
-                                                                      .join("_FontAwesome/fonts/FontAwesome.ttf")) {
+                                                                          .join("_FontAwesome/fonts/FontAwesome.\
+                                                                                 ttf")) {
             f
         } else {
             return Err(Box::new(io::Error::new(io::ErrorKind::Other, "Could not create FontAwesome.ttf")));
