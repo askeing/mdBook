@@ -5,7 +5,6 @@ pub mod fs;
 use self::pulldown_cmark::{Parser, html, Options, OPTION_ENABLE_TABLES, OPTION_ENABLE_FOOTNOTES};
 
 
-
 ///
 ///
 /// Wrapper around the pulldown-cmark parser and renderer to render markdown
