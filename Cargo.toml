@@ -15,7 +15,7 @@ exclude = [
 ]
 
 [dependencies]
-clap = "~2.1.0"
+clap = "~2.1.2"
 toml = "~0.1.27"
 handlebars = "~0.14.0"
 rustc-serialize = "~0.3.16"
